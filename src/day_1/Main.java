@@ -3,260 +3,254 @@ package day_1;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+
+    // 1. Leer e imprimir datos personales
+    public void leerEImprimirDatos() {
         Scanner scanner = new Scanner(System.in);
 
-        // Leer nombre, apellido y edad
-        System.out.print("Ingresa tu nombre: ");
+        System.out.print("Introduce tu nombre: ");
         String nombre = scanner.nextLine();
-        System.out.print("Ingresa tu apellido: ");
+
+        System.out.print("Introduce tu apellido: ");
         String apellido = scanner.nextLine();
-        System.out.print("Ingresa tu edad: ");
+
+        System.out.print("Introduce tu edad: ");
         int edad = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
 
-        // Imprimir en la consola
-        System.out.println("Hola, mi nombre es " + nombre + " " + apellido + " y tengo " + edad + " años.");
+        System.out.println("Hola, " + nombre + " " + apellido + ". Tienes " + edad + " años.");
+    }
 
-        // Llamar al método de bienvenida
-        imprimirBienvenida();
+    // 2. Imprimir mensaje de bienvenida
+    public void imprimirBienvenida() {
+        System.out.println("¡Bienvenido/a a nuestro programa!");
+    }
 
-        // Leer tres números y determinar el mayor
-        System.out.print("Ingresa el primer número: ");
+    // 3. Encontrar el mayor de tres números
+    public void encontrarMayor() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce el primer número: ");
         int num1 = scanner.nextInt();
-        System.out.print("Ingresa el segundo número: ");
+
+        System.out.print("Introduce el segundo número: ");
         int num2 = scanner.nextInt();
-        System.out.print("Ingresa el tercer número: ");
+
+        System.out.print("Introduce el tercer número: ");
         int num3 = scanner.nextInt();
 
-        int mayorNumero = encontrarMayor(num1, num2, num3);
-        System.out.println("El mayor de los tres números es: " + mayorNumero);
+        int mayor = Math.max(num1, Math.max(num2, num3));
+        System.out.println("El número mayor es: " + mayor);
+    }
 
-        // Leer un número y determinar si es par o impar
-        System.out.print("Ingresa un número para verificar si es par o impar: ");
+    // 4. Determinar si un número es par o impar
+    public void determinarParidad() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce un número: ");
         int numero = scanner.nextInt();
-        System.out.println("El número " + numero + " es " + (esPar(numero) ? "par" : "impar"));
 
-        // Leer dos cadenas y determinar si son iguales
-        scanner.nextLine(); // Limpiar buffer
-        System.out.print("Ingresa la primera cadena: ");
+        if (numero % 2 == 0) {
+            System.out.println("El número " + numero + " es par.");
+        } else {
+            System.out.println("El número " + numero + " es impar.");
+        }
+    }
+
+    // 5. Comparar dos cadenas de caracteres
+    public void compararCadenas() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce la primera cadena: ");
         String cadena1 = scanner.nextLine();
-        System.out.print("Ingresa la segunda cadena: ");
+
+        System.out.print("Introduce la segunda cadena: ");
         String cadena2 = scanner.nextLine();
-        System.out.println("Las cadenas son " + (cadena1.equals(cadena2) ? "iguales" : "diferentes"));
 
-        // Verificar si un número es primo
-        System.out.print("Ingresa un número para verificar si es primo: ");
-        int numeroPrimo = scanner.nextInt();
-        System.out.println("El número " + numeroPrimo + " es " + (esPrimo(numeroPrimo) ? "primo" : "no primo"));
-
-        // Sumar números impares de una matriz
-        int[] matriz = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        int sumaImpares = sumaNumerosImpares(matriz);
-        System.out.println("La suma de los números impares es: " + sumaImpares);
-
-        // Imprimir números pares y sumar números primos de una matriz
-        int sumaPrimos = imprimirParesYSumarPrimos(matriz);
-        System.out.println("La suma de los números primos es: " + sumaPrimos);
-
-        // Ejecutar la calculadora
-        ejecutarCalculadora(scanner);
-
-        // Gestionar ingreso a la bolera
-        gestionarBolera(scanner);
-
-        scanner.close();
-    }
-
-    // Método que imprime un mensaje de bienvenida
-    public static void imprimirBienvenida() {
-        System.out.println("¡Bienvenidos a MovieStack!");
-    }
-
-    // Método para encontrar el mayor de tres números
-    public static int encontrarMayor(int num1, int num2, int num3) {
-        int mayor = num1;
-        if (num2 > mayor) {
-            mayor = num2;
+        if (cadena1.equals(cadena2)) {
+            System.out.println("Las cadenas son iguales.");
+        } else {
+            System.out.println("Las cadenas son diferentes.");
         }
-        if (num3 > mayor) {
-            mayor = num3;
+    }
+
+    // 6. Determinar si un número es primo
+    public boolean esPrimo(int numero) {
+        if (numero <= 1) {
+            return false;
         }
-        return mayor;
-    }
-
-    // Método para verificar si un número es par
-    public static boolean esPar(int numero) {
-        return numero % 2 == 0;
-    }
-
-    // Método para verificar si un número es primo
-    public static boolean esPrimo(int numero) {
-        if (numero <= 1) return false;
-        for (int i = 2; i < numero; i++) {
-            if (numero % i == 0) return false;
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
+                return false;
+            }
         }
         return true;
     }
 
-    // Método para sumar los números impares de una matriz
-    public static int sumaNumerosImpares(int[] matriz) {
+    // 7. Sumar números impares en un array
+    public int sumaImpares(int[] numeros) {
         int suma = 0;
-        for (int num : matriz) {
-            if (num % 2 != 0) {
-                suma += num;
+        for (int numero : numeros) {
+            if (numero % 2 != 0) {
+                suma += numero;
             }
         }
         return suma;
     }
 
-    // Método para imprimir números pares y sumar números primos de una matriz
-    public static int imprimirParesYSumarPrimos(int[] matriz) {
+    // 8. Imprimir números pares y sumar números primos en un array
+    public void imprimirParesYSumarPrimos(int[] numeros) {
         int sumaPrimos = 0;
         System.out.print("Números pares: ");
-        for (int num : matriz) {
-            if (num % 2 == 0) {
-                System.out.print(num + " ");
+        for (int numero : numeros) {
+            if (numero % 2 == 0) {
+                System.out.print(numero + " ");
             }
-            if (esPrimo(num)) {
-                sumaPrimos += num;
+            if (esPrimo(numero)) {
+                sumaPrimos += numero;
             }
         }
-        System.out.println();
-        return sumaPrimos;
+        System.out.println("\nLa suma de los números primos es: " + sumaPrimos);
     }
 
-    // Método para ejecutar la calculadora
-    public static void ejecutarCalculadora(Scanner scanner) {
-        int opcion;
-        do {
-            imprimirMenuCalculadora();
-            opcion = scanner.nextInt();
-            if (opcion != 0) {
-                realizarOperacion(opcion, scanner);
-            }
-        } while (opcion != 0);
-        System.out.println("Saliendo de la calculadora.");
-    }
-
-    // Método para imprimir el menú de la calculadora
-    public static void imprimirMenuCalculadora() {
-        System.out.println("\nCalculadora:");
+    // 9. Imprimir menú de calculadora
+    public void imprimirMenuCalculadora() {
+        System.out.println("Menú de Calculadora:");
         System.out.println("1. Sumar");
         System.out.println("2. Restar");
         System.out.println("3. Multiplicar");
         System.out.println("4. Dividir");
         System.out.println("0. Salir");
-        System.out.print("Elige una opción: ");
     }
 
-    // Método para realizar una operación de la calculadora
-    public static void realizarOperacion(int opcion, Scanner scanner) {
-        System.out.print("Ingresa el primer número: ");
-        int num1 = scanner.nextInt();
-        System.out.print("Ingresa el segundo número: ");
-        int num2 = scanner.nextInt();
-        switch (opcion) {
-            case 1:
-                System.out.println("Resultado: " + (num1 + num2));
-                break;
-            case 2:
-                System.out.println("Resultado: " + (num1 - num2));
-                break;
-            case 3:
-                System.out.println("Resultado: " + (num1 * num2));
-                break;
-            case 4:
-                if (num2 != 0) {
-                    System.out.println("Resultado: " + (num1 / num2));
-                } else {
-                    System.out.println("Error: División por cero.");
-                }
-                break;
-            default:
-                System.out.println("Opción no válida.");
-                break;
-        }
-    }
-
-    // Método para gestionar el ingreso a la bolera
-    public static void gestionarBolera(Scanner scanner) {
-        int capacidadMaxima = 500;
-        int capacidadActual = 0;
-        int dineroRecaudado = 0;
+    // 10. Realizar operaciones de calculadora
+    public void ejecutarCalculadora() {
+        Scanner scanner = new Scanner(System.in);
         int opcion;
-
         do {
-            imprimirMenuBolera();
+            imprimirMenuCalculadora();
+            System.out.print("Elige una opción: ");
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            if (opcion == 0) {
+                break;
+            }
+            System.out.print("Introduce el primer número: ");
+            double num1 = scanner.nextDouble();
+            System.out.print("Introduce el segundo número: ");
+            double num2 = scanner.nextDouble();
             switch (opcion) {
                 case 1:
-                    if (capacidadActual < capacidadMaxima) {
-                        System.out.print("Ingresa tu nombre: ");
-                        String nombre = scanner.nextLine();
-                        System.out.print("Ingresa tu edad: ");
-                        int edad = scanner.nextInt();
-                        scanner.nextLine(); // Limpiar buffer
-                        System.out.print("Ingresa tu DNI: ");
-                        String dni = scanner.nextLine();
-                        System.out.print("Ingresa tu contraseña: ");
-                        String contrasena = scanner.nextLine();
-
-                        if (edad > 21) {
-                            System.out.print("¿Tienes un pase VIP (S/N)? ");
-                            String esVip = scanner.nextLine();
-                            boolean tieneVip = esVip.equalsIgnoreCase("S");
-                            boolean paseDescuento = false;
-                            if (!tieneVip) {
-                                System.out.print("¿Tienes un pase de descuento (S/N)? ");
-                                String esDescuento = scanner.nextLine();
-                                paseDescuento = esDescuento.equalsIgnoreCase("S");
-                            }
-
-                            if (tieneVip) {
-                                System.out.println("Entrada gratuita. ¡Bienvenido " + nombre + "!");
-                            } else {
-                                System.out.print("¿Deseas entrada normal (N) o VIP (V)? ");
-                                String tipoEntrada = scanner.nextLine();
-                                int costoEntrada = tipoEntrada.equalsIgnoreCase("V") ? 2000 : 1500;
-                                if (paseDescuento) {
-                                    costoEntrada /= 2;
-                                }
-                                dineroRecaudado += costoEntrada;
-                                capacidadActual++;
-                                System.out.println("Entrada " + (tipoEntrada.equalsIgnoreCase("V") ? "VIP" : "normal") + " pagada. ¡Bienvenido " + nombre + "!");
-                            }
-                        } else {
-                            System.out.println("Lo siento, solo se permite el ingreso a mayores de 21 años.");
-                        }
-                    } else {
-                        System.out.println("Capacidad máxima alcanzada. No se permiten más ingresos.");
-                    }
+                    System.out.println("Resultado: " + (num1 + num2));
                     break;
                 case 2:
-                    System.out.println("Capacidad disponible: " + (capacidadMaxima - capacidadActual));
+                    System.out.println("Resultado: " + (num1 - num2));
                     break;
                 case 3:
-                    System.out.println("Dinero recaudado: " + dineroRecaudado);
+                    System.out.println("Resultado: " + (num1 * num2));
                     break;
                 case 4:
-                    System.out.println("Cerrando sesión en el sistema.");
+                    if (num2 == 0) {
+                        System.out.println("Error: División por cero.");
+                    } else {
+                        System.out.println("Resultado: " + (num1 / num2));
+                    }
                     break;
                 default:
                     System.out.println("Opción no válida.");
                     break;
             }
-        } while (opcion != 4);
+        } while (opcion != 0);
     }
 
-    // Método para imprimir el menú de la bolera
-    public static void imprimirMenuBolera() {
-        System.out.println("\nMenú Bolera:");
+    // 11. Gestión de entrada a una bolera
+    private int capacidad = 500;
+    private int dineroRecaudado = 0;
+
+    public void gestionarBolera() {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        do {
+            imprimirMenuBolera();
+            System.out.print("Elige una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Consumir nueva línea
+            switch (opcion) {
+                case 1:
+                    ingresarDatosPersonales(scanner);
+                    break;
+                case 2:
+                    System.out.println("Capacidad disponible: " + capacidad);
+                    break;
+                case 3:
+                    System.out.println("Dinero recaudado: " + dineroRecaudado);
+                    break;
+                case 0:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public void imprimirMenuBolera() {
+        System.out.println("Menú de Bolera:");
         System.out.println("1. Entrada de datos");
         System.out.println("2. Capacidad disponible");
         System.out.println("3. Dinero recaudado");
-        System.out.println("4. Cerrar sesión");
-        System.out.print("Elige una opción: ");
+        System.out.println("0. Salir del sistema");
+    }
+
+    public void ingresarDatosPersonales(Scanner scanner) {
+        System.out.print("Introduce tu nombre: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Introduce tu edad: ");
+        int edad = scanner.nextInt();
+        System.out.print("Introduce tu ID: ");
+        String id = scanner.next();
+        System.out.print("¿Tienes un pase (VIP o descuento)? (ninguno/vip/descuento): ");
+        String pase = scanner.next().toLowerCase();
+
+        if (edad < 21) {
+            System.out.println("Lo siento, debes tener al menos 21 años para entrar.");
+            return;
+        }
+
+        int precioEntrada = 1500;
+        if (pase.equals("vip")) {
+            precioEntrada = 0;
+        } else if (pase.equals("descuento")) {
+            precioEntrada = 750;
+        }
+
+        System.out.print("¿Quieres comprar una entrada normal o VIP? (normal/vip): ");
+        String tipoEntrada = scanner.next().toLowerCase();
+        if (tipoEntrada.equals("vip")) {
+            precioEntrada = 2000;
+        }
+
+        if (capacidad > 0) {
+            capacidad--;
+            dineroRecaudado += precioEntrada;
+            System.out.println("¡Bienvenido/a, " + nombre + "! Disfruta tu tiempo en la bolera.");
+        } else {
+            System.out.println("Lo siento, la capacidad está llena.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.leerEImprimirDatos();
+        main.imprimirBienvenida();
+        main.encontrarMayor();
+        main.determinarParidad();
+        main.compararCadenas();
+        System.out.println(main.esPrimo(17) ? "El número es primo." : "El número no es primo.");
+        int[] numeros = {1, 2, 3, 4, 5};
+        System.out.println("La suma de los números impares es: " + main.sumaImpares(numeros));
+        main.imprimirParesYSumarPrimos(numeros);
+        main.ejecutarCalculadora();
+        main.gestionarBolera();
+
     }
 }

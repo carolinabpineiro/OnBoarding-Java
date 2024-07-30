@@ -1,6 +1,7 @@
 package day_4;
 
 import java.util.InputMismatchException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalculatorWithMenu implements CalculatorMenu {
@@ -26,48 +27,50 @@ public class CalculatorWithMenu implements CalculatorMenu {
 
     @Override
     public void ejecutarOperacion(int opcion, double a, double b) {
-        try {
-            switch (opcion) {
-                case 1:
-                    System.out.println("Resultado: " + calculadora.sumar(a, b));
-                    break;
-                case 2:
-                    System.out.println("Resultado: " + calculadora.restar(a, b));
-                    break;
-                case 3:
-                    System.out.println("Resultado: " + calculadora.multiplicar(a, b));
-                    break;
-                case 4:
-                    System.out.println("Resultado: " + calculadora.dividir(a, b));
-                    break;
-                case 5:
-                    System.out.println("Saliendo...");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
+        if (opcion == 1) {
+            System.out.println("Resultado: " + calculadora.sumar(a, b));
+        } else if (opcion == 2) {
+            System.out.println("Resultado: " + calculadora.restar(a, b));
+        } else if (opcion == 3) {
+            System.out.println("Resultado: " + calculadora.multiplicar(a, b));
+        } else if (opcion == 4) {
+            double resultado = calculadora.dividir(a, b);
+            if (b != 0) { // Verificamos aquí para evitar mostrar resultados incorrectos
+                System.out.println("Resultado: " + resultado);
             }
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage());
+        } else if (opcion == 5) {
+            System.out.println("Saliendo...");
+            System.exit(0);
+        } else {
+            System.out.println("Opción no válida.");
         }
     }
 
     public void iniciar() {
-        while (true) {
+        int opcion;
+        double a = 0, b = 0;
+
+        do {
             mostrarMenu();
-            int opcion = obtenerOpcion();
-            double a = obtenerNumero("Ingrese el primer número: ");
-            double b = obtenerNumero("Ingrese el segundo número: ");
-            ejecutarOperacion(opcion, a, b);
-        }
+            opcion = obtenerOpcion();
+
+            if (opcion != 5) {
+                a = obtenerNumero("Ingrese el primer número: ");
+                b = obtenerNumero("Ingrese el segundo número: ");
+                ejecutarOperacion(opcion, a, b);
+            }
+        } while (opcion != 5); // Continuar hasta que el usuario elija salir
+
+        scanner.close();
     }
 
     private int obtenerOpcion() {
         int opcion = -1;
         while (opcion < 1 || opcion > 5) {
-            try {
+            System.out.print("Seleccione una opción: ");
+            if (scanner.hasNextInt()) {
                 opcion = scanner.nextInt();
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println("Entrada no válida. Ingrese un número entero.");
                 scanner.next(); // Limpiar el buffer
             }
@@ -80,10 +83,10 @@ public class CalculatorWithMenu implements CalculatorMenu {
         boolean valido = false;
         while (!valido) {
             System.out.print(mensaje);
-            try {
+            if (scanner.hasNextDouble()) {
                 numero = scanner.nextDouble();
                 valido = true;
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println("Entrada no válida. Ingrese un número decimal.");
                 scanner.next(); // Limpiar el buffer
             }
