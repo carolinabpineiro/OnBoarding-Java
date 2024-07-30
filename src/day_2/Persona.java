@@ -80,11 +80,15 @@ public class Persona {
 
     // Método para presentar la información de la persona
     public void presentar() {
-        System.out.println("Nombre: " + nombre + " " + apellido);
-        System.out.println("DNI: " + dni);
-        System.out.println("Edad: " + edad);
-        System.out.println("Altura: " + altura + " metros");
-        System.out.println("Estado civil: " + (casado ? "Casado/a" : "Soltero/a"));
+        System.out.println("Hola! mi nombre es " + nombre +" "+ apellido);
+        System.out.println("Tengo " + edad + " años y mido " + altura + " metros de altura.");
+        if (casado) {
+            System.out.println("Estoy casado/a");
+        } else {
+            System.out.println("No estoy casado/a");
+        }
+
+        System.out.println("Mi DNI es: " + dni);
         System.out.print("Mascotas: ");
         if (nombresMascotas.length > 0) {
             for (int i = 0; i < nombresMascotas.length; i++) {
@@ -99,20 +103,20 @@ public class Persona {
         System.out.println();
     }
 
-    // Método para introducirse
-    public void presentarse() {
-        System.out.println("Hola, soy " + nombre + " " + apellido + ". Tengo " + edad + " años, mido " + altura + " metros, y estoy " + (casado ? "casado/a" : "soltero/a") + ".");
-        if (nombresMascotas.length > 0) {
-            System.out.print("Mis mascotas se llaman: ");
-            for (int i = 0; i < nombresMascotas.length; i++) {
-                System.out.print(nombresMascotas[i]);
-                if (i < nombresMascotas.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println(".");
-        } else {
-            System.out.println("No tengo mascotas.");
-        }
-    }
+//    // Método para introducirse
+//    public void presentarse() {
+//        System.out.println("Hola, soy " + nombre + " " + apellido + ". Tengo " + edad + " años, mido " + altura + " metros, y estoy " + (casado ? "casado/a" : "soltero/a") + ".");
+//        if (nombresMascotas.length > 0) {
+//            System.out.print("Mis mascotas se llaman: ");
+//            for (int i = 0; i < nombresMascotas.length; i++) {
+//                System.out.print(nombresMascotas[i]);
+//                if (i < nombresMascotas.length - 1) {
+//                    System.out.print(", ");
+//                }
+//            }
+//            System.out.println(".");
+//        } else {
+//            System.out.println("No tengo mascotas.");
+//        }
+//    }
 }
