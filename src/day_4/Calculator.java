@@ -17,9 +17,10 @@ public class Calculator implements CalculatorOperations {
     }
 
     @Override
-    public double dividir(double a, double b) throws ArithmeticException {
+    public double dividir(double a, double b) {
         if (b == 0) {
-            throw new ArithmeticException("No se puede dividir por cero.");
+            System.out.println("Error: No se puede dividir por cero.");
+            return 0; // Valor por defecto en caso de error
         }
         return a / b;
     }
