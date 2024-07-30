@@ -5,5 +5,9 @@ public enum TipoMascota {
     GATO,
     PÁJARO,
     PECES,
-    OTROS
+    OTROS;
+
+    public String tolowerCase() {
+        return name().toLowerCase();
+    }
 }

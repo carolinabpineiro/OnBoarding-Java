@@ -50,9 +50,8 @@ public class Mascota {
 
     // Método para presentar la información de la mascota
     public void presentar() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Tipo: " + tipo);
-        System.out.println("Edad: " + edad + " años");
-        System.out.println("Propietario: " + (propietario != null ? propietario.getNombre() + " " + propietario.getApellido() : "Sin propietario"));
+
+        System.out.println( nombre + " es un/a " + tipo.tolowerCase() + " y tiene  " + edad +  " año/s");
+
     }
 }
